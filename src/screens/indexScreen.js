@@ -1,25 +1,43 @@
 import React, { useContext } from "react";
 import { View, Text, StyleSheet, FlatList, Button } from "react-native";
-import BlogContext from "../context/BlogContext";
+import { Context } from "../context/BlogContext";
+import { Feather } from "@expo/vector-icons";
 
 const IndexScreen = () => {
-  const { data, addBlogPost } = useContext(BlogContext);
+  const { state, addBlogPost } = useContext(Context);
   return (
     <View>
-      <Text>Index Screen</Text>
       <Buttton title="Add Post" onPress={addBlogPost} />
       <FlatList
-        data={blogPosts}
-        keyExtractor={(blogPosts) => blogPosts.title}
+        data={state}
+        keyExtractor={(blogPost) => blogPost.title}
         renderItem={({ item }) => {
-          return <Text>{item.title}</Text>;
+          return (
+            <View style={styles.row}>
+              <Text styles={styles.title}>{item.title}</Text>
+              <Feather styles={styles.icon} name="trash" />
+            </View>
+          );
         }}
-      ></FlatList>
-      <Text>{value}</Text>
+      />
     </View>
   );
 };
 
-const Style = StyleSheet.create({});
+const styles = StyleSheet.create({
+  row: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingVertical: 20,
+    borderTopWidth: 1,
+    boderColor: "gray",
+  },
+  title: {
+    fontSize: 18,
+  },
+  icon: {
+    fontSize: 24,
+  },
+});
 
 export default IndexScreen;
