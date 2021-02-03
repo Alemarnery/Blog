@@ -3,6 +3,7 @@ import { createStackNavigator, createAppContainer } from "react-native";
 import IndexScreen from "./src/screens/indexScreen";
 import { Provider } from "./src/context/BlogContext";
 import ShowScreen from "./src/screens/ShowScreen";
+import CreateScreen from "./src/screens/CreateScreen";
 
 const navigator = createStackNavigator(
   {
